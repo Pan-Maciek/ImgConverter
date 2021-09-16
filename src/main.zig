@@ -1,6 +1,6 @@
 const std = @import("std");
-const freeImage = @import("./freeImage.zig");
-const fs = @import("./fs.zig");
+const freeImage = @import("freeImage.zig");
+const fs = @import("fs.zig");
 
 const Image = freeImage.Image;
 
