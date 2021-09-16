@@ -10,7 +10,7 @@ pub fn build(b: *std.build.Builder) void {
     // Standard release options allow the person running `zig build` to select
     // between Debug, ReleaseSafe, ReleaseFast, and ReleaseSmall.
     const mode = b.standardReleaseOptions();
-    b.installFile("FreeImage/FreeImage.dll", "bin/FreeImage.dll");
+    b.installBinFile("FreeImage/FreeImage.dll", "FreeImage.dll");
 
     const exe = b.addExecutable("ImgConverter", "src/main.zig");
     exe.linkLibC();
