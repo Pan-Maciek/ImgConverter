@@ -7,16 +7,14 @@ const Image = freeImage.Image;
 pub fn main() !void {
     var buffer: [256]u8 = undefined;
     var fba = std.heap.FixedBufferAllocator.init(&buffer);
-    var allocator = &fba.allocator;
+    const allocator = fba.allocator();
 
     std.debug.print("{s}\n", .{freeImage.getCopyrightMessage()});
 
     freeImage.init();
     defer freeImage.deinit();
 
-    for (std.mem.span(std.os.argv)[1..]) |_path| {
-        const path = std.mem.span(_path);
-
+    for (std.os.argv[1..]) |path| {
         const img = Image.load(path) catch |err| {
             std.log.warn("Error while processing {s}. Cause: {s}", .{ path, @errorName(err) });
             continue;
